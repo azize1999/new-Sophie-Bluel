@@ -207,3 +207,35 @@ nav img {
 	border: solid 1px;
     border-radius: 7px;
 }
+
+.Filter {
+
+	align-items: center;
+	font-family: 'Syne';
+    font-weight: 700;
+    color: #1D6154;
+    background-color: white;
+    margin: 2em auto;
+    text-align: center;
+    border-radius: 60px;
+}
+.Filter > input{
+
+    color: #1D6154;
+    background-color: white;
+	border: none;
+	padding: 10px 0px;
+    border: 1px solid #1D6154;
+    border-radius: 25px;
+    font-family: 'Syne';
+	margin: 2em auto 2em 2em;
+    cursor: pointer;
+    padding: 0% 2% 0% 2%;
+    height: 37px;
+	width: auto;
+}
+
+.Filter > input:hover{
+	background-color: #1D6154;
+	color: white;
+}
