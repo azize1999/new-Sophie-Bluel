@@ -1,40 +1,75 @@
-// Ce code implémente un formulaire de connexion à une API de manière asynchrone avec gestion des erreurs et
-//  stockage d'un jeton d'authentification dans le sessionStorage
-const loginpourApi ='http://localhost:5678/api/users/login';
+document.addEventListener('DOMContentLoaded', () => {
+    // Sélection des éléments du formulaire
+    const loginForm = document.querySelector('#login');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    console.log("L'élément #log-in a été trouvé :", loginForm);
+    // Vérification des éléments critiques
+    if (!loginForm ||!emailInput || !passwordInput) {
+        console.error('Erreur: Éléments du formulaire introuvables');
+        return;
+    }
 
-document
-.getElementById('Log In')
-.addEventListener('submit', e => handleLoginSubmit(e));
+    // Fonction de connexion
+    async function loginUser(email, password) {
+        const loginUrl = 'http://localhost:5678/api/users/login';
 
+        try {
+            const response = await fetch(loginUrl, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({
+                    email: email,
+                    password: password
+                })
+            });
 
-async function handleLoginSubmit(event) {
-    event.preventDefault();
+            if (!response.ok) {
+                throw new Error('Identifiants incorrects');
+            }
 
-    let user = {
-        email: document.getElementById("email").value,
-        password: document.getElementById("password").value,
-    };
+            const data = await response.json();
+            
+            // Stockage du token dans le localStorage
+            localStorage.setItem('authToken', data.token);
+            
+            // Redirection vers la page d'accueil après connexion réussie
+            window.location.href = 'index.html';
 
-    let response = await fetch(loginpourApi, {
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(user),
+        } catch (error) {
+            // Gestion des erreurs
+            console.error('Erreur de connexion:', error);
+            alert(error.message || 'Une erreur est survenue lors de la connexion');
+        }
+    }
+
+    // Gestion de la soumission du formulaire
+    loginForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const email = emailInput.value.trim();
+        const password = passwordInput.value;
+
+        // Validation basique
+        if (!email || !password) {
+            alert('Veuillez remplir tous les champs');
+            return;
+        }
+
+        loginUser(email, password);
     });
 
-    if(response.status != 200) {
-        const errorBox = document.createElement('div');
-        errorBox.className = "error-login";
-        errorBox.innerHTML = "Saisie incorrecte";
-        document.querySelector("form").prepend(errorBox);
+    // Vérification si l'utilisateur est déjà connecté
+    function checkAuthStatus() {
+        const token = localStorage.getItem('authToken');
+        if (token) {
+            window.location.href = 'index.html';
+        }
     }
 
-    else {
-    let result = await response.json();
-    const token = result.token;
-         sessionStorage.setItem("authToken", token);
-         window.location.href = "index.html "
-    }
-}
-
+    // Vérification initiale
+    checkAuthStatus();
+});

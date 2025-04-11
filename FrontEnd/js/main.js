@@ -1,89 +1,77 @@
-async function displayGallery() {
-    const url = "http://localhost:5678/api/works";
-    const gallery = document.querySelector(".gallery");
+document.addEventListener('DOMContentLoaded', async () => {
+    const gallery = document.getElementById("gallery");
+    const filterContainer = document.querySelector(".Filter");
 
     if (!gallery) {
-        console.error("L'élément '.gallery' est introuvable.");
-        return;
+        console.error("Erreur : L'élément #gallery est introuvable dans le DOM.");
+        return; // Arrêter l'exécution si gallery n'est pas trouvé
     }
-    
-    try {
-        const response = await fetch(url);
- 
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP: ${response.status}`);
+
+    console.log("L'élément #gallery a été trouvé :", gallery);
+
+    async function loadWorks(filter = null) {
+        const url = "http://localhost:5678/api/works";
+
+        try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error(`Erreur HTTP: ${response.status}`);
+
+            const works = await response.json();
+            renderWorks(works, filter);
+
+        } catch (error) {
+            console.error("Erreur de chargement:", error);
+        }
+    }
+
+    function renderWorks(works, filter) {
+        // Double vérification de gallery
+        if (!gallery) {
+            console.log("Erreur : L'élément #gallery est introuvable dans le DOM.");
+            return; 
         }
 
-        const works = await response.json();
+        gallery.innerHTML = ""; // Vidage sécurisé
 
-        console.log("Voici les données récupérées avec les détails complets :");
-        works.forEach(work => {
-            console.log({
-                id: work.id,
-                title: work.title,
-                imageUrl: work.imageUrl,
-                categoryId: work.categoryId, 
-                userId: work.userId
-            });
+        const filteredWorks = filter 
+            ? works.filter(work => work.categoryId == filter) 
+            : works;
 
-            gallery.innerHTML += `
-                <figure>
-                    <img src="${work.imageUrl}" alt="${work.title}">
-                    <figcaption>${work.title}</figcaption>
-                </figure>`;
+        // Création des éléments
+        filteredWorks.forEach(work => {
+            const figure = document.createElement("figure");
+            figure.dataset.id = work.id;
+
+            figure.innerHTML = `
+                <img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
+                <figcaption>${work.title}</figcaption>
+            `;
+
+            gallery.appendChild(figure);
         });
-async function displayGallery(categoryId = null) {
-    const url = "http://localhost:5678/api/works";
-    const gallery = document.querySelector(".gallery");
-
-    if (!gallery) {
-        console.error("L'élément '.gallery' est introuvable.");
-        return;
     }
 
-    try {
-        const response = await fetch(url);
+    if (filterContainer) {
+        const filters = filterContainer.querySelectorAll("input[type='submit']");
 
-        if (!response.ok) {
-            throw new Error(`Erreur HTTP: ${response.status}`);
-        }
+        filters.forEach(filterBtn => {
+            filterBtn.addEventListener('click', () => {
+                filters.forEach(btn => btn.classList.remove("active"));
+                filterBtn.classList.add("active");
 
-        const works = await response.json();
-        
-        gallery.innerHTML = '';
+                const filterValue = filterBtn.value;
+                const categoryId = 
+                    filterValue === "Tous" ? null :
+                    filterValue === "Objets" ? 1 :
+                    filterValue === "Appartements" ? 2 : 3;
 
-        works.forEach(work => {
-            console.log({
-                id: work.id,
-                title: work.title,
-                imageUrl: work.imageUrl,
-                categoryId: work.categoryId, 
-                userId: work.userId
+                loadWorks(categoryId);
             });
-
-            if (categoryId === null || work.categoryId === categoryId) {
-                gallery.innerHTML += `
-                    <figure>
-                        <img src="${work.imageUrl}" alt="${work.title}">
-                        <figcaption>${work.title}</figcaption>
-                    </figure>`;
-            }
         });
-    } catch (error) {
-        console.error("Une erreur s'est produite :", error.message);
+    } 
+    else {
+        console.warn("Aucun conteneur de filtre trouvé.");
     }
-}
 
-document.querySelector('input[value="Tous"]').addEventListener('click', () => displayGallery());
-document.querySelector('input[value="Objets"]').addEventListener('click', () => displayGallery(1)); //categoryId = 1 pour "Objets"
-document.querySelector('input[value="Appartements"]').addEventListener('click', () => displayGallery(2)); // categoryId = 2
-document.querySelector('input[value="Hotels & restaurants"]').addEventListener('click', () => displayGallery(3)); // categoryId = 3
-
-displayGallery();
-
-    } catch (error) {
-        console.error("Une erreur s'est produite :", error.message);
-    }
-}
-
-displayGallery();
+    await loadWorks();
+});
