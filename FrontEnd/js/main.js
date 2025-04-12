@@ -75,3 +75,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     await loadWorks();
 });
+document.addEventListener('DOMContentLoaded', async () => {
+    const token = localStorage.getItem('token'); // Supposons que le token est stocké dans localStorage
+    const editionDiv = document.querySelector('.edition');
+    const filterDiv = document.querySelector('.Filter');
+
+    // Vérifie si le token existe
+    if (token) {
+        // Affiche le div édition
+        if (editionDiv) {
+            editionDiv.style.display = 'block';
+        }
+
+        // Cache le div filter
+        if (filterDiv) {
+            filterDiv.style.display = 'none';
+        }
+
+        // Redirection vers index.html
+        window.location.href = 'index.html';
+    }
+});

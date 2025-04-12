@@ -38,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('Token de connexion:', data.token);
             console.log('Email:', email);
             console.log('Password:', password);
-            
 
             document.querySelector('a[href="login.html"]').innerText = 'logout';
             document.querySelector('a[href="login.html"]').addEventListener('click', function() {
@@ -47,12 +46,6 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('authToken'); 
             window.location.href = 'index.html';
       }
-            
-      
-            if (email === 'sophie.bluel@test.tld' && password === 'S0phie') {
-                window.location.href = 'index.html'; 
-                return; 
-            }
             });
         } catch (error) {
             console.error('Erreur de connexion:', error);
@@ -66,10 +59,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = passwordInput.value;
 
     if (!email || !password) {
-        document.getElementById("error").style.display = "none"; 
+        document.getElementById("error").style.display = "block"; 
         return; 
     }
-        document.getElementById("error").style.display = "block"; 
+        // document.getElementById("error").style.display = "block"; 
     
     loginUser(email, password);    
     });
