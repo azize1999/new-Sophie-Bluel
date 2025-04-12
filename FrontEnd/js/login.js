@@ -33,16 +33,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const data = await response.json();
             
-            // Stockage du token dans le localStorage
             localStorage.setItem('authToken', data.token);
-            
-            // Redirection vers la page d'accueil après connexion réussie
+            console.log('Token de connexion:', data.token);
+            console.log('Email:', email);
+            console.log('Password:', password);
             window.location.href = 'index.html';
-
         } catch (error) {
-            // Gestion des erreurs
             console.error('Erreur de connexion:', error);
-            alert(error.message || 'Une erreur est survenue lors de la connexion');
         }
     }
 
@@ -53,13 +50,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const email = emailInput.value.trim();
         const password = passwordInput.value;
 
-        // Validation basique
-        if (!email || !password) {
-            alert('Veuillez remplir tous les champs');
-            return;
-        }
-
-        loginUser(email, password);
+    if (!email || !password) {
+        document.getElementById("error").style.display = "none"; 
+        return; 
+    }
+        document.getElementById("error").style.display = "block"; 
+    
+    loginUser(email, password);    
     });
 
     // Vérification si l'utilisateur est déjà connecté
@@ -70,6 +67,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Vérification initiale
     checkAuthStatus();
 });

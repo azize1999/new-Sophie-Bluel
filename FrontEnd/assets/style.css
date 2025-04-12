@@ -239,3 +239,20 @@ nav img {
 	background-color: #1D6154;
 	color: white;
 }
+.error  {
+	text-align: center;
+    border: solid #1D6154;
+    background: red;
+    color: black;
+}
+/* Animation de clignotement */
+@keyframes blink {
+	0%, 100% { opacity: 1; }
+	50% { opacity: 0; }
+  }
+  
+  /* Classe qui active le clignotement pendant 3s */
+  .blink-3s {
+	display: block ;
+	animation: blink 0.5s linear 6 forwards;
+  }
