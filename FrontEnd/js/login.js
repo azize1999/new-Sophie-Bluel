@@ -34,16 +34,31 @@ document.addEventListener('DOMContentLoaded', () => {
             const data = await response.json();
             
             localStorage.setItem('authToken', data.token);
+
             console.log('Token de connexion:', data.token);
             console.log('Email:', email);
             console.log('Password:', password);
+            
+
+            document.querySelector('a[href="login.html"]').innerText = 'logout';
+            document.querySelector('a[href="login.html"]').addEventListener('click', function() {
+        
+            if (this.innerText === 'logout') {
+            localStorage.removeItem('authToken'); 
             window.location.href = 'index.html';
+      }
+            
+      
+            if (email === 'sophie.bluel@test.tld' && password === 'S0phie') {
+                window.location.href = 'index.html'; 
+                return; 
+            }
+            });
         } catch (error) {
             console.error('Erreur de connexion:', error);
         }
     }
 
-    // Gestion de la soumission du formulaire
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
         
