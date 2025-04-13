@@ -13,9 +13,10 @@
 	<script src="js/main.js" defer></script>
 </head>
 <body>
-	<div class="edition">
+	
+	<div class="edition" popovertarget="modal">
 	<p>Mode édition</p>
-	<i class="fa-solid fa-pen-to-square"></i>
+	<i class="fa-solid fa-pen-to-square" ></i>
     </div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -24,12 +25,12 @@
 			<li><a href="#portfolio">projets</a></li>
 			<li><a href="#contact">contact</a></li>
 			<li class="login"><a href="login.html">login</a></li>  	
-			<!-- <li class="logout"><a href="index.html">logout</a></li>  	 -->
 			<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 		</ul>
 	</nav>
 </header>
 <main>
+	
 	<section id="introduction">
 		<figure>
 			<img src="./assets/images/sophie-bluel.png" alt="">
@@ -42,7 +43,9 @@
 		</article>
 	</section>
 	<section id="portfolio">
-		<h2>Mes Projets</h2>
+		<div class="button-Modifer">
+			<p style="display: none;" class="Modifier"><i class="fa-solid fa-pen-to-square"></i>modifer</p><h2>Mes Projets</h2>
+	    </div>
 		<div class="Filter">
 		<input type="submit" value="Tous">
 		<input type="submit" value="Objets">
@@ -50,6 +53,14 @@
 		<input type="submit" value="Hotels & restaurants">
 	    </div>
 		<div class="gallery" id="gallery"></div>
+		<div class="box">
+			<button popovertarget="modal">modal-box</button>
+			<div id="modal"popover>
+			<h2>modal box</h2>
+			<p>this is modal</p>
+			<button popovertarget="modal">close</button>
+			</div>
+		</div>
 	</section>
 	<section id="contact">
 		<h2>Contact</h2>

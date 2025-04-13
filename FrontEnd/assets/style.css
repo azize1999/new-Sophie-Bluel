@@ -273,7 +273,27 @@ nav img {
 	cursor: pointer;
 	font-weight: 100;
     font-size: small;
+	margin-right: 10px;
   }
   .edition > i:hover{
 	color: #B1663C;
   }
+ .button-Modifer  {
+	display: flex;
+	justify-content: center;
+	align-items: baseline;
+	flex-direction: row-reverse;
+}
+.button-Modifer > p{
+	margin: 0 4%;
+	cursor: pointer;
+	font-weight: 100;
+	font-size: small;
+}
+.button-Modifer i{
+	margin-right: 8px;
+}
+.button-Modifer i:hover{
+	color:#1D6154;;
+  }
+

@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const emailInput = document.getElementById('email');
     const passwordInput = document.getElementById('password');
     console.log("L'élément #log-in a été trouvé :", loginForm);
-    // Vérification des éléments critiques
+    
     if (!loginForm ||!emailInput || !passwordInput) {
         console.error('Erreur: Éléments du formulaire introuvables');
         return;

@@ -76,12 +76,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadWorks();
 });
 document.addEventListener('DOMContentLoaded', async () => {
-    const token = localStorage.getItem('authToken'); // Supposons que le token est stocké dans localStorage
+    const token = localStorage.getItem('authToken');
     const editionDiv = document.querySelector('.edition');
     const filterDiv = document.querySelector('.Filter');
     const login =  document.querySelector('.login a');
-
-
+    const Modifier = document.querySelector('.Modifier');
     // Vérifie si le token existe
     if (token) {
         if (login){
@@ -90,6 +89,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             editionDiv.style.flexDirection = 'row-reverse';
             editionDiv.style.alignItems = 'center';
             filterDiv.style.display = 'none';
+            Modifier.style.display = 'block';
             login.innerText = 'logout';
             login.addEventListener('click', (e) => {
                 e.preventDefault();
