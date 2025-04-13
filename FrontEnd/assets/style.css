@@ -63,8 +63,8 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-
 	margin: 50px 0
+	
 }
 section {
 	margin: 50px 0
@@ -261,22 +261,19 @@ nav img {
 	height: 8%;
 	background: black;
 	color: white;
-	text-align: center;
-	display: flex;
-    flex-direction: row-reverse;
-    justify-content: center;
-    align-items: center;
-	gap: 1%;
+	display: none;
 	font-size: small;
-	width: 100vw; /* Utilisez 100vw pour la largeur complète de la fenêtre */
+	width: 100%; /* Utilisez 100vw pour la largeur complète de la fenêtre */
 	position: absolute; 
 	left: 0; 
 	top: 0; 
   }
   .edition > i{
-	font-size: 20px;
     margin-left: 10px;
 	cursor: pointer;
 	font-weight: 100;
     font-size: small;
+  }
+  .edition > i:hover{
+	color: #B1663C;
   }

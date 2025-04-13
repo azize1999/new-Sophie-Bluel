@@ -76,23 +76,26 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadWorks();
 });
 document.addEventListener('DOMContentLoaded', async () => {
-    const token = localStorage.getItem('token'); // Supposons que le token est stocké dans localStorage
+    const token = localStorage.getItem('authToken'); // Supposons que le token est stocké dans localStorage
     const editionDiv = document.querySelector('.edition');
     const filterDiv = document.querySelector('.Filter');
+    const login =  document.querySelector('.login a');
+
 
     // Vérifie si le token existe
     if (token) {
-        // Affiche le div édition
-        if (editionDiv) {
-            editionDiv.style.display = 'block';
-        }
-
-        // Cache le div filter
-        if (filterDiv) {
+        if (login){
+            editionDiv.style.display = 'flex';
+            editionDiv.style.justifyContent = 'center';
+            editionDiv.style.flexDirection = 'row-reverse';
+            editionDiv.style.alignItems = 'center';
             filterDiv.style.display = 'none';
+            login.innerText = 'logout';
+            login.addEventListener('click', (e) => {
+                e.preventDefault();
+                localStorage.removeItem('authToken');
+                window.location.reload();
+            });
         }
-
-        // Redirection vers index.html
-        window.location.href = 'index.html';
     }
 });

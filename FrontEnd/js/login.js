@@ -41,14 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
             document.querySelector('a[href="login.html"]').innerText = 'logout';
             document.querySelector('a[href="login.html"]').addEventListener('click', function() {
-        
-            if (this.innerText === 'logout') {
-            localStorage.removeItem('authToken'); 
-            window.location.href = 'index.html';
-      }
+            document.getElementById("error").style.display = "none"; 
+           
             });
+            window.location.href = 'index.html';
         } catch (error) {
             console.error('Erreur de connexion:', error);
+            document.getElementById("error").style.display = "block"; 
         }
     }
 
@@ -59,10 +58,10 @@ document.addEventListener('DOMContentLoaded', () => {
         const password = passwordInput.value;
 
     if (!email || !password) {
-        document.getElementById("error").style.display = "block"; 
+       
         return; 
     }
-        // document.getElementById("error").style.display = "block"; 
+        
     
     loginUser(email, password);    
     });
