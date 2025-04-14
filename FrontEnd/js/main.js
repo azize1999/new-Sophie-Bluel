@@ -99,3 +99,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     }
 });
+// Sélection de l'icône <i> et de la modal
+const openButton = document.querySelector('.fa-solid.fa-pen-to-square'); 
+const modal = document.getElementById('modal'); 
+const closeButton = document.querySelector('.close-button[popovertarget="modal"]'); 
+
+if (openButton && modal && closeButton) {
+
+    openButton.addEventListener('click', () => {
+        modal.style.display = 'block'; 
+    });
+
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none'; 
+    });
+} else {
+    console.error('Un ou plusieurs éléments n\'ont pas été trouvés dans le DOM.');
+}

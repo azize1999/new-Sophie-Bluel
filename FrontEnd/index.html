@@ -14,9 +14,9 @@
 </head>
 <body>
 	
-	<div class="edition" popovertarget="modal">
+	<div class="edition">
 	<p>Mode édition</p>
-	<i class="fa-solid fa-pen-to-square" ></i>
+	<i class="fa-solid fa-pen-to-square openmodal" ></i>
     </div>
 <header>
 	<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -44,7 +44,7 @@
 	</section>
 	<section id="portfolio">
 		<div class="button-Modifer">
-			<p style="display: none;" class="Modifier"><i class="fa-solid fa-pen-to-square"></i>modifer</p><h2>Mes Projets</h2>
+			<p style="display: none;" class="Modifier"><i class="fa-solid fa-pen-to-square openmodal"></i>modifer</p><h2>Mes Projets</h2>
 	    </div>
 		<div class="Filter">
 		<input type="submit" value="Tous">
@@ -55,11 +55,15 @@
 		<div class="gallery" id="gallery"></div>
 		<div class="box">
 			<button popovertarget="modal">modal-box</button>
-			<div id="modal"popover>
-			<h2>modal box</h2>
-			<p>this is modal</p>
-			<button popovertarget="modal">close</button>
-			</div>
+			<div id="modal" style="display: none;" popover>
+				<div class="head-modal">
+			<h3 class="title">Galerie photo</h3>
+			<button class="close-button" popovertarget="modal"><i class="fa-solid fa-xmark"></i></button>
+		        </div>
+			<div class="modal-gallery"></div>
+			<hr/>
+			<input id="Ajouter-une-photo" type="submit" value="Ajouter une photo">
+		    </div>
 		</div>
 	</section>
 	<section id="contact">

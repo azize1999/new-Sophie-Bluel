@@ -296,4 +296,48 @@ nav img {
 .button-Modifer i:hover{
 	color:#1D6154;;
   }
-
+#modal {
+	border:solid;
+	top: 0;
+	left: 0;
+	width: 38%;
+    height: 85%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	place-self: center;
+	border-radius: 10px;
+	padding-right: 105px;
+    padding-left: 105px;
+}
+.head-modal {
+	display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.close-button {
+	cursor: pointer;
+	display: flex;
+	justify-content: end;
+    background: transparent;
+	border: solid transparent;
+	font-size: large;
+}
+.head-modal > .close-button {
+	margin-right: -4em;
+}
+.title {
+    padding-top: 3em;
+	width: 100%;
+    justify-items: center;
+	font-size: x-large;
+}
+.head-modal > .title{
+	display: flex;
+	justify-content: center;
+}
+#Ajouter-une-photo{
+	height: 36px;
+    width: 237px;
+	display: flex;
+}
