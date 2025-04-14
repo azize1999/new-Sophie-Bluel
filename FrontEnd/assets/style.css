@@ -297,11 +297,9 @@ nav img {
 	color:#1D6154;;
   }
 #modal {
-	border:solid;
 	top: 0;
 	left: 0;
-	width: 38%;
-    height: 85%;
+    height: 97%;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -313,7 +311,6 @@ nav img {
 .head-modal {
 	display: flex;
     justify-content: space-between;
-    align-items: center;
 }
 .close-button {
 	cursor: pointer;
@@ -322,12 +319,13 @@ nav img {
     background: transparent;
 	border: solid transparent;
 	font-size: large;
+	margin-top: 7%;
 }
 .head-modal > .close-button {
 	margin-right: -4em;
 }
 .title {
-    padding-top: 3em;
+    padding-top: 2em;
 	width: 100%;
     justify-items: center;
 	font-size: x-large;
@@ -337,7 +335,40 @@ nav img {
 	justify-content: center;
 }
 #Ajouter-une-photo{
-	height: 36px;
-    width: 237px;
+	width: 17.6em;
+    height: 2.8em;
 	display: flex;
+	border: solid;
 }
+.modal-gallery {
+	width: 85%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 10px;
+    grid-row-gap: 20px;
+	margin-top: 2.50em;
+	justify-content: center;
+}
+.modal-gallery img {
+	width: 100%;
+}
+.modal-gallery figure{
+	width: 76.86px;
+}
+.modal-gallery-container {
+	margin-bottom: 8%;
+	display: flex;
+    justify-content: center;
+}
+
+.modal-gallery #trash {
+	position: absolute;
+	font-size: 16px; /* Ajustez cette valeur pour contrôler la taille de l'icône */
+	cursor: pointer;
+	background-color: black;
+	color: white;
+	padding: 4px;
+	border-radius: 10%;
+	margin: 1% 0 0 -5%;
+}
+  
