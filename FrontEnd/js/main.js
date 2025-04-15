@@ -51,6 +51,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             const figureClone = figure.cloneNode(true);
             figureClone.innerHTML = ` <img src="${work.imageUrl}" alt="${work.title}" crossorigin="anonymous">
             <i id="trash" class="fa-solid fa-trash-can"></i>`;
+
+            
             document.querySelector(".modal-gallery").append(figureClone);
 
                 
@@ -111,13 +113,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 const openButton = document.querySelector('.fa-solid.fa-pen-to-square'); 
 const modal = document.getElementById('modal'); 
 const closeButton = document.querySelector('.close-button[popovertarget="modal"]'); 
-// const modalGallery = document.querySelector('.modal-gallery');
+
 
 if (openButton && modal && closeButton) {
 
     openButton.addEventListener('click', () => {
         modal.style.display = 'block'; 
-        // ajouterTrashIcons(); // 👉 ajoute les icônes poubelles à l'ouverture
     });
 
     closeButton.addEventListener('click', () => {
@@ -126,19 +127,36 @@ if (openButton && modal && closeButton) {
 } else {
     console.error('Un ou plusieurs éléments n\'ont pas été trouvés dans le DOM.');
 }
-    // // Ajouter une corbeille à chaque image 
-    // function ajouterTrashIcons() {
-    //     const figures = modalGallery.querySelectorAll('.gallery-item');
-    
-    //     figures.forEach(figure => {
-    //         if (!figure.querySelector('.trash-icon')) {
-    //             const trashIcon = document.createElement('i');
-    //             trashIcon.className = "fa-solid fa-trash-can trash-icon";
-    
-    //             trashIcon.addEventListener('click', () => {
-    //                 figure.remove();
-    //             });
-    //             figure.appendChild(trashIcon);
-    //         }
-    //     });
-    // }
+                     
+// ajouter une photo + suppression d'une photo
+
+document.addEventListener("click", (event) => {
+    const target = event.target;
+
+    if (target.id === "trash") {
+        // Supprimer l'image (figure associée)
+        target.closest("figure").remove();
+    } else if (target.id === "Ajouter-une-photo") {
+        // Ouvrir la fenêtre de sélection d'image
+        const inputFile = document.createElement("input");
+        inputFile.type = "file";
+        inputFile.accept = "image/*";
+
+        inputFile.onchange = (e) => {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = () => {
+                     // Code à exécuter une fois que le fichier a été lu
+                    const figure = document.createElement("figure");
+                    figure.innerHTML = `
+                        <img src="${reader.result}" alt="Nouvelle Image">
+                        <i id="trash" class="fa-solid fa-trash-can"></i>`;
+                    document.querySelector(".modal-gallery").append(figure);
+                };
+                reader.readAsDataURL(file);
+            }
+        };
+        inputFile.click(); // Ouvre la fenêtre de sélection
+    }
+});
