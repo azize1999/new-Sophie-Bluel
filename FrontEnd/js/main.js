@@ -110,26 +110,28 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 // Sélection de l'icône <i> et de la modal
-const openButton = document.querySelector('.fa-solid.fa-pen-to-square'); 
+const openButtons = document.querySelectorAll('.fa-solid.fa-pen-to-square'); 
 const modal = document.getElementById('modal'); 
 const closeButton = document.querySelector('.close-button[popovertarget="modal"]'); 
 
 
-if (openButton && modal && closeButton) {
+if (openButtons && modal && closeButton ) {
 
-    openButton.addEventListener('click', () => {
-        modal.style.display = 'block'; 
+    openButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            modal.style.display = 'block'; 
+        });
     });
 
     closeButton.addEventListener('click', () => {
         modal.style.display = 'none'; 
+        
     });
 } else {
     console.error('Un ou plusieurs éléments n\'ont pas été trouvés dans le DOM.');
 }
                      
 // ajouter une photo + suppression d'une photo
-
 document.addEventListener("click", (event) => {
     const target = event.target;
 
@@ -137,26 +139,27 @@ document.addEventListener("click", (event) => {
         // Supprimer l'image (figure associée)
         target.closest("figure").remove();
     } else if (target.id === "Ajouter-une-photo") {
-        // Ouvrir la fenêtre de sélection d'image
-        const inputFile = document.createElement("input");
-        inputFile.type = "file";
-        inputFile.accept = "image/*";
-
-        inputFile.onchange = (e) => {
-            const file = e.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = () => {
-                     // Code à exécuter une fois que le fichier a été lu
-                    const figure = document.createElement("figure");
-                    figure.innerHTML = `
-                        <img src="${reader.result}" alt="Nouvelle Image">
-                        <i id="trash" class="fa-solid fa-trash-can"></i>`;
-                    document.querySelector(".modal-gallery").append(figure);
-                };
-                reader.readAsDataURL(file);
-            }
-        };
-        inputFile.click(); // Ouvre la fenêtre de sélection
+        document.getElementById("add-page").style.display = "block";
+    const modalContainer = document.querySelector(".modal-container");
+    modalContainer.style.display = "none";
+    
+        // inputFile.onchange = (e) => {
+        //     const file = e.target.files[0];
+        //     if (file) {
+        //         const reader = new FileReader();
+        //         reader.onload = () => {
+        //              // Code à exécuter une fois que le fichier a été lu
+        //             const figure = document.createElement("figure");
+        //             figure.innerHTML = `
+        //                 <img src="${reader.result}" alt="Nouvelle Image">
+        //                 <i id="trash" class="fa-solid fa-trash-can"></i>`;
+        //             document.querySelector(".modal-gallery").append(figure);
+        //         };
+        //         reader.readAsDataURL(file);
+        //     }
+        // };
+        // inputFile.click(); // Ouvre la fenêtre de sélection
     }
 });
+
+
