@@ -321,9 +321,40 @@ nav img {
 	font-size: large;
 	margin-top: 7%;
 }
+.button-close {
+	cursor: pointer;
+	display: flex;
+	justify-content: end;
+    background: transparent;
+	border: solid transparent;
+	font-size: large;
+	margin-top: 7%;
+}
 .head-modal > .close-button {
 	margin-right: -4em;
 }
+.head-modal > .close-button-2 {
+	margin-right: -4em;
+	cursor: pointer;
+	display: flex;
+	justify-content: end;
+    background: transparent;
+	border: solid transparent;
+	font-size: large;
+	margin-top: 7%;
+}
+.head-modal  .retour {
+	margin-left: -3em;
+	cursor: pointer;
+	display: flex;
+	justify-content: end;
+    background: transparent;
+	border: solid transparent;
+	font-size: large;
+	margin-top: 7%;
+}
+
+
 .title {
     padding-top: 2em;
 	width: 100%;
@@ -372,7 +403,7 @@ nav img {
 	margin: 1% 0 0 -5%;
 }
   
-/* #add-box{
+#add-box{
 	width: 100%;
 }
 .add-picture{
@@ -385,4 +416,20 @@ nav img {
 	border: solid red;
     background-color: #CBD6DC;
     border-radius: 50px;
-} */
+}
+#add-page {
+	top: 0;
+	left: 0;
+	height: 97%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	place-self: center;
+	border-radius: 10px;
+	padding-right: 105px;
+	padding-left: 105px;
+	position: fixed; 
+	background-color: white; 
+	z-index: 1001; 
+}
+

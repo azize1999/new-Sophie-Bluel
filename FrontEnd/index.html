@@ -53,8 +53,22 @@
 		<input type="submit" value="Hotels & restaurants">
 	    </div>
 		<div class="gallery" id="gallery"></div>
+
+
+
+
+
+
+
+
+
+
+
+
 		
+		<aside>
 			<div class="Modal" id="modal" style="display: none;" popover>
+	<div class="modal-container">
 				<div class="head-modal">
 			<h3 class="title">Galerie photo</h3>
 			<button class="close-button" popovertarget="modal"><i class="fa-solid fa-xmark"></i></button>
@@ -64,10 +78,34 @@
 		        </div>
 			<hr/>
 			<input id="Ajouter-une-photo" type="submit" value="Ajouter une photo">
-		    </div>
+	</div>
+			<div class="add-page modal" id="add-page" style="display: none;" popover>
+				
+				<div class="modal-container1">
+				<div class="head-modal">
+					<button  class="retour"><i class="fa-solid fa-arrow-left retour"></i></button>
+			<h3 class="title">Ajout photo</h3>
+			<button class="close-button-2" popovertarget="modal"><i class="fa-solid fa-xmark"></i></button>
+			    </div>
+
+            <div class="modal-add-container" id="contact" >
+				<label for="title">Titre</label>
+				<input type="text" name="title"  />
+				<label for="title">Catégorie</label>
+				<input type="text" name="Catégorie"  />
+			</div>
+			
+				
+			<input id="Ajouter-une-photo" type="submit" value="Valider">
+		</div>
+	
+		</div>
 		</aside>
+         
+		
 	</section>
-	<section id="contact">
+	
+	<section id="contact" >
 		<h2>Contact</h2>
 		<p>Vous avez un projet ? Discutons-en !</p>
 		<form action="#" method="post">
@@ -91,29 +129,3 @@
 </footer>
 </body>
 </html>
-
-
-
-<!-- <div class="add-page modal" id="add-page" style="display: none;" popover>
-	<div class="modal-container">
-				<div class="head-modal">
-			<h3 class="title">Galerie</h3>
-			<button class="close-button" popovertarget="modal"><i class="fa-solid fa-xmark"></i></button>
-			    </div>
-				<section class="contact" id="add-box">
-					<form action="#" method="post">
-						<div class="add-picture">
-							<label class="picture" for="submit">+ Ajouter photo
-							<input type="file"  name="file" accept="image/png, image/jpeg" /></label>
-                          <p>jpg, png : 4mo max</p>
-						</div>
-						<label for="name">Titre</label>
-						<input type="text" name="name" >
-						<label for="email">Catégorie</label>
-						<input type="email" name="email">
-					</form>
-				</section>
-			<hr/>
-			<input id="Ajouter-une-photo" type="submit" value="Ajouter une photo">
-		    </div>
-		</div> -->
