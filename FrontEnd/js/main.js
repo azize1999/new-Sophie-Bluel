@@ -114,24 +114,6 @@ const openButtons = document.querySelectorAll('.fa-solid.fa-pen-to-square');
 const modal = document.getElementById('modal'); 
 const closeButton = document.querySelector('.close-button[popovertarget="modal"]'); 
 
-
-if (openButtons && modal && closeButton ) {
-
-    openButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            modal.style.display = 'block'; 
-        });
-    });
-
-    closeButton.addEventListener('click', () => {
-        modal.style.display = 'none'; 
-        
-    });
-} else {
-    console.error('Un ou plusieurs éléments n\'ont pas été trouvés dans le DOM.');
-}
-
-
                      
 // ajouter une photo + suppression d'une photo
 document.addEventListener("click", (event) => {
@@ -142,31 +124,8 @@ document.addEventListener("click", (event) => {
         target.closest("figure").remove();
     } else if (target.id === "Ajouter-une-photo") {
         document.getElementById("add-page").style.display = "block";
-    const modalContainer = document.querySelector(".modal-container");
-    const modalContainer1 = document.querySelector(".modal-Container1");
-        // Cacher la modal principale
-    modalContainer.style.display = "none";
-    modalContainer1.style.display = "block";
+   
 
-//retour button 
-const retourButton = document.querySelector(".retour");
-retourButton.addEventListener("click", changingModal);
-
-
-function changingModal() {
-  // Cette fonction est destinée à gérer l'affichage et le masquage d'une modale en fonction de son état actuel.
-  if( document.querySelector(".modal").style.display ==="block" ||
-      document.querySelector(".modal").style.display ===""
-){
-    console.log(1);
-    document.querySelector(".modal-container").style.display = "none";
-    document.querySelector(".modal-container1").style.display = "block";
-  } else {
-    document.querySelector(".modal-container").style.display = "block";
-    document.querySelector(".modal-container1").style.display = "none";
-    console.log("2");
-  }
-}
         // inputFile.onchange = (e) => {
         //     const file = e.target.files[0];
         //     if (file) {
@@ -186,4 +145,31 @@ function changingModal() {
     }
 });
 
+//open and close button
+document.querySelector('.fa-solid.fa-pen-to-square').onclick = function() {
+    document.getElementById('modal').style.display = 'block';
+};
 
+document.getElementById('closeModal').onclick = function() {
+    document.getElementById('modal').style.display = 'none';
+};
+//ajouter une photo (confirm button)
+document.getElementById('confirmButton').onclick = function() {
+    var firstForm = document.getElementById('firstForm');
+    var secondForm = document.getElementById('secondForm');
+    firstForm.style.display = 'none';
+    secondForm.style.display = 'block';
+};
+// confirm and return button
+document.getElementById('returnButton').onclick = function() {
+    var firstForm = document.getElementById('firstForm');
+    var secondForm = document.getElementById('secondForm');
+    firstForm.style.display = 'block';
+    secondForm.style.display = 'none';
+};
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('modal')) {
+        document.getElementById('modal').style.display = 'none';
+    }
+};
