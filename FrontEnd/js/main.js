@@ -173,3 +173,37 @@ window.onclick = function(event) {
         document.getElementById('modal').style.display = 'none';
     }
 };
+
+//ajouter la photo selectionnée
+document.addEventListener("DOMContentLoaded", function () {
+  const fileInput = document.getElementById("file");
+  const previewContainer = document.getElementById("previewImageContainer");
+  const label = document.querySelector('label[for="file"]');
+  const icon = document.querySelector(".addDocument-container i");
+  const details = document.querySelector(".details");
+
+  fileInput.addEventListener("change", function (event) {
+    const file = event.target.files[0];
+
+    if (file && file.type.startsWith("image/")) {
+      const reader = new FileReader();
+
+      reader.onload = function (e) {
+        const img = document.createElement("img");
+        img.src = e.target.result;
+        img.alt = "Prévisualisation";
+        img.style.maxWidth = "129px";
+
+        previewContainer.innerHTML = "";
+        previewContainer.appendChild(img);
+
+        label.style.display = "none";
+        if (icon) icon.style.display = "none";
+        if (details) details.style.display = "none";
+      };
+
+      reader.readAsDataURL(file);
+    }
+  });
+});
+

@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -140,10 +139,8 @@ li:hover {
 	grid-column-gap: 20px;
 	grid-row-gap: 20px;
 }
-
 .gallery img {
 	width: 100%;
-
 }
 #contact {
 	width: 50%;
@@ -187,17 +184,14 @@ input[type="submit"]{
 	text-align: center;
 	border-radius: 60px ;
 }
-
 footer nav ul {
 	display: flex;
 	justify-content: flex-end;
 	margin: 2em
 }
-
 p a{
 	text-decoration:underline
 }
-
 .login {
 	font-weight: 600;
 }
@@ -208,7 +202,6 @@ nav img {
 	border: solid 1px;
     border-radius: 7px;
 }
-
 .Filter {
 
 	align-items: center;
@@ -328,24 +321,6 @@ nav img {
     margin-left: -7mm;
     margin-top: 2mm;
 }
-  
-/* #add-box{
-	width: 100%;
-}
-.add-picture{
-    width: 100%;
-    border: solid;
-    height: 169px;
-    background-color: #E8F1F6;
-}
-.picture{
-	border: solid red;
-    background-color: #CBD6DC;
-    border-radius: 50px;
-}
-
-} */
-
 body {
     font-family: Arial, sans-serif;
 }
@@ -363,7 +338,6 @@ body {
     background-color: rgba(0,0,0,0.4); 
 	
 }
-
 .modal-content {
     background-color: #fefefe;
     margin: 0% auto; 
@@ -416,10 +390,9 @@ body {
  .addDocument-container {
 	display: grid;
     justify-items: center;
-	height: 75%;
+	height: 169px;
     background: #E8F1F6;
-	padding-top: 20px;
-    padding-bottom: 20px;
+	padding-bottom: 5px;
  }
  .addDocument input {
 	height: 50px;
