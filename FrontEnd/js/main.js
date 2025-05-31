@@ -113,7 +113,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 const openButtons = document.querySelectorAll('.fa-solid.fa-pen-to-square'); 
 const modal = document.getElementById('modal'); 
 const closeButton = document.querySelector('.close-button[popovertarget="modal"]'); 
-
+var firstForm  = document.getElementById('firstForm');
+var secondForm = document.getElementById('secondForm');
+const fileInput       = document.getElementById('file');
+const titleInput      = secondForm.querySelector('input[name="title"]');
+const categorySelect  = secondForm.querySelector('select[name="category"]');
+const previewContainer= document.getElementById('previewImageContainer');
+const fileLabel       = document.querySelector('label[for="file"]');
+const fileIcon        = document.querySelector('.addDocument-container i');
+const fileDetails     = document.querySelector('.details');
                      
 // ajouter une photo + suppression d'une photo
 document.addEventListener("click", (event) => {
@@ -148,24 +156,96 @@ document.addEventListener("click", (event) => {
 //open and close button
 document.querySelector('.fa-solid.fa-pen-to-square').onclick = function() {
     document.getElementById('modal').style.display = 'block';
+    resetUploadForm()
 };
 
 document.getElementById('closeModal').onclick = function() {
     document.getElementById('modal').style.display = 'none';
 };
 //ajouter une photo (confirm button)
-document.getElementById('confirmButton').onclick = function() {
+document.getElementById('openAddPhoto').onclick = function() {
     var firstForm = document.getElementById('firstForm');
     var secondForm = document.getElementById('secondForm');
     firstForm.style.display = 'none';
     secondForm.style.display = 'block';
 };
+document.getElementById('confirmButton').onclick = async function(e) {
+    e.preventDefault();   
+    const title    = titleInput.value.trim();
+    const category = categorySelect.value;
+    firstForm.style.display  = 'none';
+    secondForm.style.display = 'block';
+
+    if (!fileInput.files[0] || !title || !category) {
+        alert('Veuillez remplir tous les champs et sélectionner une image.');
+        return;
+    }
+    console.log('title', title);
+    console.log('category', category)
+
+    const imageData = new imageData();
+    imageData.append('image',    fileInput.files[0]);
+    imageData.append('title',    title);
+    imageData.append('category', category);
+    
+    const token = localStorage.getItem('authToken');
+    console.log('token', token);
+    if (!token) {
+        alert('Vous devez être connecté·e pour ajouter une photo.');
+        return;
+    }
+
+    try {
+        const res = await fetch('http://localhost:5678/api/works', {
+            method:  'POST',
+            headers: { 'Authorization': 'Bearer ' + token },
+            body:     imageData
+        });
+
+        if (res.status === 201) {
+            const newWork = await res.json();
+            const figure = document.createElement('figure');
+            figure.dataset.id = newWork.id;
+            figure.innerHTML = `
+                <img src="${newWork.imageUrl}" alt="${newWork.title}" crossorigin="anonymous">
+                <figcaption>${newWork.title}</figcaption>`;
+            document.getElementById('gallery').appendChild(figure);
+
+            const modalFig = figure.cloneNode(true);
+            modalFig.innerHTML = `<img src="${newWork.imageUrl}" alt="${newWork.title}" crossorigin="anonymous">
+                                  <i id="trash" class="fa-solid fa-trash-can"></i>`;
+            document.querySelector('.modal-gallery').appendChild(modalFig);
+
+            document.getElementById('modal').style.display = 'none';
+            resetUploadForm()
+
+        } else {
+            const err = await res.text();
+            alert('Erreur : ' + err);
+        }
+    } catch (err) {
+        console.error(err);
+        alert('Impossible de contacter le serveur.');
+    }
+};
+function resetUploadForm() {
+    firstForm.style.display   = 'block';
+    secondForm.style.display  = 'none';
+    fileInput.value           = '';
+    titleInput.value          = '';
+    categorySelect.value      = '';
+    previewContainer.innerHTML = '';
+    fileLabel.style.display   = '';
+    if (fileIcon)    fileIcon.style.display    = '';
+    if (fileDetails) fileDetails.style.display = '';
+  }
 // confirm and return button
 document.getElementById('returnButton').onclick = function() {
     var firstForm = document.getElementById('firstForm');
     var secondForm = document.getElementById('secondForm');
     firstForm.style.display = 'block';
     secondForm.style.display = 'none';
+    resetUploadForm()
 };
 
 window.onclick = function(event) {
@@ -206,4 +286,3 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   });
 });
-

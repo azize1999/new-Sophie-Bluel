@@ -374,7 +374,7 @@ body {
 	width: 81%;
 	margin-top: 5%;
 }
-#confirmButton {
+#confirmButton  {
 	width: 250px;
     padding: 10px 20px;
     border: 1px solid #1D6154;
@@ -386,6 +386,8 @@ body {
     margin-left: 10%;
 	margin-right: 10%;
 	margin-top: 3%;
+	font-family: 'Work Sans';
+    color: #444444;
  }
  .addDocument-container {
 	display: grid;
@@ -394,11 +396,13 @@ body {
     background: #E8F1F6;
 	padding-bottom: 5px;
  }
- .addDocument input {
+ .addDocument input  {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+	font-family: 'Work Sans';
+    color: #444444;
 }
 .addDocument label {
 	margin: 2em 0 1em 0;
@@ -426,3 +430,38 @@ body {
 .details {
 	color: #444444;
 }
+#openAddPhoto  {
+	width: 250px;
+    padding: 10px 20px;
+    border: 1px solid #1D6154;
+    cursor: pointer;
+	display: block;
+	}
+#category {
+    width: 100%;
+    height: 50px;
+    font-family: "Work Sans";
+	padding-left: 15px;
+    color: #444;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    appearance: none;
+}
+#category >option {
+	font-family: 'Work Sans';
+    color: #444444;
+}
+.fleche {
+    position: relative;
+}
+.fleche i {
+    position: absolute;
+    right: 20px; /* ← décale la flèche de 20px vers la gauche */
+    top: 35%;
+    display: flex;
+    justify-content: flex-end;
+    color: #444;
+    font-size: 12px;
+	cursor: pointer;
+}
+

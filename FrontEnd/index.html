@@ -66,7 +66,7 @@
 			<div class="modal-gallery"></div>
 		        </div>
 				<hr>
-				<input id="confirmButton" type="submit" value="Ajouter une photo">
+				<input id="openAddPhoto" type="submit" value="Ajouter une photo">
             </div>
             <div id="secondForm" style="display: none;">
 				<button id="returnButton"><i class="fa-solid fa-arrow-left"></i></button>
@@ -75,14 +75,22 @@
                   <div class="addDocument-container">
 					<div id="previewImageContainer"></div>
                     <i class="fa-regular fa-image"></i>
-					 <input type="file" id="file" name="file" accept="image/png, image/jpeg" style="display: none;" />
+					 <input type="file" id="file" name="image" accept="image/png, image/jpeg" style="display: none;" />
                      <label for="file" class="add-photo">+ Ajouter photo</label>
 					<p class="details">jpg, png : 4mo max</p>
                   </div>
-				<label for="title">Titre</label>
-				<input type="text" name="title" required/>
-				<label for="title">Catégorie</label>
-				<input type="text" name="Catégorie" required/>
+				<label for="titleInput">Titre</label>
+				<input type="text" id="titleInput" name="title" required/>
+				
+				<label for="category">Catégorie</label>
+				<div class="fleche">
+					<select id="category" name="category" size="1" required >
+					<option value="1">Objets</option>
+					<option value="2">Appartements</option>
+					<option value="3">Hôtels & restaurants</option>
+					</select>
+					<i class="fa-solid fa-chevron-down" aria-hidden="true"></i>
+					</div>
                 </div>
 				<hr>
 				<input id="confirmButton" type="submit" value="Valider">
