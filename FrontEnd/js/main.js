@@ -131,7 +131,7 @@ document.addEventListener("click", (event) => {
         // Supprimer l'image (figure associée)
         target.closest("figure").remove();
     } else if (target.id === "Ajouter-une-photo") {
-        document.getElementById("add-page").style.display = "block";
+        document.getElementById("modal").style.display = "block";
    
 
         // inputFile.onchange = (e) => {
@@ -162,13 +162,14 @@ document.querySelector('.fa-solid.fa-pen-to-square').onclick = function() {
 document.getElementById('closeModal').onclick = function() {
     document.getElementById('modal').style.display = 'none';
 };
-//ajouter une photo (confirm button)
+//ajouter une photo (openAddPhoto)
 document.getElementById('openAddPhoto').onclick = function() {
     var firstForm = document.getElementById('firstForm');
     var secondForm = document.getElementById('secondForm');
     firstForm.style.display = 'none';
     secondForm.style.display = 'block';
 };
+// Valider une photo (confirmButton)
 document.getElementById('confirmButton').onclick = async function(e) {
     e.preventDefault();   
     const title    = titleInput.value.trim();
@@ -183,10 +184,10 @@ document.getElementById('confirmButton').onclick = async function(e) {
     console.log('title', title);
     console.log('category', category)
 
-    const imageData = new imageData();
-    imageData.append('image',    fileInput.files[0]);
-    imageData.append('title',    title);
-    imageData.append('category', category);
+    const formData = new FormData();
+    formData.append('image',    fileInput.files[0]);
+    formData.append('title',    title);
+    formData.append('category', category);
     
     const token = localStorage.getItem('authToken');
     console.log('token', token);
@@ -199,7 +200,7 @@ document.getElementById('confirmButton').onclick = async function(e) {
         const res = await fetch('http://localhost:5678/api/works', {
             method:  'POST',
             headers: { 'Authorization': 'Bearer ' + token },
-            body:     imageData
+            body:     formData
         });
 
         if (res.status === 201) {
@@ -285,4 +286,47 @@ document.addEventListener("DOMContentLoaded", function () {
       reader.readAsDataURL(file);
     }
   });
+});
+//supprimer la photo choisi
+document.querySelector(".modal-gallery").addEventListener("click", async function (e) {
+    if (e.target.classList.contains("fa-trash-can")) {
+        const figure = e.target.closest("figure");
+        const id = figure.dataset.id;
+
+        const token = localStorage.getItem("authToken");
+        if (!token) {
+            alert("Vous devez être connecté·e pour supprimer une photo.");
+            return;
+        }
+
+        // Supprimer immédiatement du DOM
+        figure.remove();
+        const mainGalleryFigure = document.querySelector(`.gallery figure[data-id='${id}']`);
+        if (mainGalleryFigure) {
+            mainGalleryFigure.remove();
+        }
+ console.log(`Photo avec l'ID ${id} supprimée du DOM.`);
+        try {
+            const res = await fetch(`http://localhost:5678/api/works/${id}`, {
+                method: "DELETE",
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            });
+
+            if (!res.ok) {
+                // Si l’API renvoie une erreur, afficher un message
+                const err = await res.text();
+                alert("Erreur lors de la suppression côté serveur : " + err);
+                // Optionnel : recharger la page pour refléter l’état réel
+                // location.reload();
+            }
+        } catch (err) {
+ console.error("Erreur réseau :", err);
+            console.error("Erreur réseau :", err);
+            alert("Échec de la suppression sur le serveur.");
+            // Optionnel : recharger la page ou informer l'utilisateur
+            
+        }
+    }
 });
