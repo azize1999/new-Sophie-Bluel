@@ -62,7 +62,7 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 80px 0
 	
 }
 section {
@@ -282,6 +282,8 @@ nav img {
 	cursor: pointer;
 	font-weight: 100;
 	font-size: small;
+	font-family: 'Work Sans';
+	margin-bottom: 8%;
 }
 .button-Modifer i{
 	margin-right: 8px;

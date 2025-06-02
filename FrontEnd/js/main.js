@@ -110,7 +110,6 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 // Sélection de l'icône <i> et de la modal
-const openButtons = document.querySelectorAll('.fa-solid.fa-pen-to-square'); 
 const modal = document.getElementById('modal'); 
 const closeButton = document.querySelector('.close-button[popovertarget="modal"]'); 
 var firstForm  = document.getElementById('firstForm');
@@ -132,33 +131,17 @@ document.addEventListener("click", (event) => {
         target.closest("figure").remove();
     } else if (target.id === "Ajouter-une-photo") {
         document.getElementById("modal").style.display = "block";
-   
-
-        // inputFile.onchange = (e) => {
-        //     const file = e.target.files[0];
-        //     if (file) {
-        //         const reader = new FileReader();
-        //         reader.onload = () => {
-        //              // Code à exécuter une fois que le fichier a été lu
-        //             const figure = document.createElement("figure");
-        //             figure.innerHTML = `
-        //                 <img src="${reader.result}" alt="Nouvelle Image">
-        //                 <i id="trash" class="fa-solid fa-trash-can"></i>`;
-        //             document.querySelector(".modal-gallery").append(figure);
-        //         };
-        //         reader.readAsDataURL(file);
-        //     }
-        // };
-        // inputFile.click(); // Ouvre la fenêtre de sélection
     }
 });
 
 //open and close button
-document.querySelector('.fa-solid.fa-pen-to-square').onclick = function() {
-    document.getElementById('modal').style.display = 'block';
-    resetUploadForm()
-};
-
+const openButtons = document.querySelectorAll('.fa-solid.fa-pen-to-square.openmodal');
+openButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+        document.getElementById('modal').style.display = 'block';
+        resetUploadForm();
+    });
+});
 document.getElementById('closeModal').onclick = function() {
     document.getElementById('modal').style.display = 'none';
 };
