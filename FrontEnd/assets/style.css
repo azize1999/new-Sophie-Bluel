@@ -21,6 +21,8 @@ time, mark, audio, video {
 	font-size: 100%;
 	font: inherit;
 	vertical-align: baseline;
+	font-family: 'Work Sans' ;
+	color: #3D3D3D;
 }
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure,
@@ -94,12 +96,14 @@ h2{
 nav ul {
 	display: flex;
 	list-style-type: none;
-
+    gap: 20px;
 }
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 	cursor: pointer;
+	font-weight: 600;
+	font-size: large;
 }
 
 li:hover {
@@ -130,7 +134,7 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+	margin-top: 3em;
 }
 .gallery {
 	width: 100%;
@@ -267,9 +271,13 @@ nav img {
 	font-weight: 100;
     font-size: small;
 	margin-right: 10px;
+	color: white;
   }
   .edition > i:hover{
 	color: #B1663C;
+  }
+  .edition > p{
+	color: white;
   }
  .button-Modifer  {
 	display: flex;
@@ -284,6 +292,7 @@ nav img {
 	font-size: small;
 	font-family: 'Work Sans';
 	margin-bottom: 8%;
+	color: #000000;
 }
 .button-Modifer i{
 	margin-right: 8px;
@@ -368,7 +377,7 @@ body {
     text-align: center;
     display: block;
     font-family: 'Work Sans';
-    font-size: 18px;
+    font-size: x-large;
     margin-bottom: 2%;
     margin-top: 2%;
 }
