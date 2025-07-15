@@ -108,6 +108,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }
     }
+    else {
+        editionDiv.remove();
+    }
 });
 // Sélection de l'icône <i> et de la modal
 const modal = document.getElementById('modal'); 
